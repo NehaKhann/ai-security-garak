@@ -9,8 +9,19 @@ Unlike Example 1, the model is served by **Ollama** instead of Hugging Face. Gar
 ## Prerequisites
 
 - Ollama installed
-- Garak installed (see Example 1)
+- Garak installed
 - Approximately 5–8 GB of free disk space for the model
+
+If you don't already have a virtual environment, create one.
+
+## Windows (PowerShell)
+
+```powershell
+cd 03-ollama-local
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+
+pip install garak
 
 ---
 
