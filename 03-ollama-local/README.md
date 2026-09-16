@@ -22,6 +22,17 @@ python -m venv venv
 .\venv\Scripts\Activate.ps1
 
 pip install garak
+```
+
+## Linux / macOS
+
+```bash
+cd 03-ollama-local
+python3 -m venv venv
+source venv/bin/activate
+
+pip install garak
+```
 
 ---
 
@@ -113,6 +124,14 @@ Or use the provided script:
 chmod +x run_scan.sh
 ./run_scan.sh
 ```
+
+**Terminal output:**
+
+![garak llama3 dan.Dan_11_0 scan running in the terminal](./screenshots/llama3-dan-terminal.png)
+
+**HTML report:**
+
+![garak llama3 dan.Dan_11_0 HTML report](./screenshots/llama3-dan-report.png)
 
 ---
 

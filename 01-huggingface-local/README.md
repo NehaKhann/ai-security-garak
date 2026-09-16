@@ -78,6 +78,14 @@ chmod +x run_scan.sh
 
 On the first run, Hugging Face downloads the model automatically. Future scans reuse the cached model.
 
+**Terminal output:**
+
+![garak dan.Dan_11_0 scan running in the terminal](./screenshots/dan.Dan_11_0-terminal.png)
+
+**HTML report:**
+
+![garak dan.Dan_11_0 HTML report](./screenshots/dan.Dan_11_0-report.png)
+
 ---
 
 ## Understanding the Command
@@ -147,6 +155,8 @@ python -m garak --target_type huggingface --target_name distilgpt2 --probes enco
 
 Tests whether the model follows Base64-encoded instructions.
 
+![garak encoding.InjectBase64 HTML report](./screenshots/encoding.InjectBase64-report.png)
+
 ### Offensive Language
 
 ```powershell
@@ -154,6 +164,8 @@ python -m garak --target_type huggingface --target_name distilgpt2 --probes lmrc
 ```
 
 Evaluates how the model responds to prompts involving offensive language.
+
+![garak SlurUsage HTML report](./screenshots/SlurUsage-report.png)
 
 ### List All Probes
 

@@ -6,6 +6,12 @@ Rather than focusing only on theory, this repository provides hands-on examples 
 
 ---
 
+## 🙋 For Recruiters / Non-Technical Readers
+
+**garak** is an open-source security scanner built by NVIDIA that automatically probes an AI chatbot or language model the way an attacker would — trying jailbreak personas, hidden/encoded instructions, and prompt-injection tricks to see if the model can be talked into ignoring its own safety rules or leaking information it shouldn't. An "LLM vulnerability scan" is essentially the AI equivalent of a network security scan: it fires a large, repeatable battery of known attack patterns at the model and reports exactly which ones succeeded, which failed, and why. This repository documents me running that scanner against three different kinds of AI targets — a downloaded open-source model, a REST API I built and deliberately gave a vulnerability, and a locally hosted LLM — and shows I can both configure a real security tool against a live system *and* read/interpret its findings, not just talk about AI risk in the abstract.
+
+---
+
 ## 📖 Start Here
 
 👉 **[GUIDE.md](./GUIDE.md)**
@@ -49,6 +55,8 @@ Each example is self-contained and includes:
 - Step-by-step instructions from setup to scanning
 
 Simply open the example you want to explore and follow its README.
+
+> **Windows users:** if a scan crashes with a `charmap`/`UnicodeEncodeError`, see [GUIDE.md → Troubleshooting](./GUIDE.md#11-troubleshooting) — it's a one-line console encoding fix, not a bug in the scan.
 
 ---
 
@@ -114,6 +122,26 @@ By working through this repository, you'll learn how to:
 Start with **[GUIDE.md](./GUIDE.md)** to understand the core concepts, then work through the examples at your own pace.
 
 Each example is independent, but following them in numerical order provides a gradual introduction to garak and its different generators.
+
+---
+
+## 🔗 Related Work
+
+This repo is one half of a broader AI security investigation:
+
+- **[ai-security-gandalf](https://github.com/NehaKhann/ai-security-gandalf)** — a simplified rebuild of Lakera's Gandalf prompt-injection challenge, where I hand-crafted the attacks that try to talk a model into leaking a secret.
+- **This repo (ai-security-garak)** — automates that same category of attack at scale using garak's probe library, instead of typing each prompt by hand.
+- **Medium article — "From Gandalf to Garak — Automating the AI Attacks I Used to Type by Hand"** — walks through the throughline between the two projects: manual red-teaming first, then automating it with a real scanner.
+
+Read together, the two repos show the same underlying skill (probing LLMs for prompt-injection and jailbreak failures) at two different levels of tooling: manual, then automated.
+
+---
+
+## 🖥️ Why No Live Demo?
+
+There's no hosted URL to click for this project, and that's intentional rather than incomplete. garak is a **CLI security scanner**, not a web app — its output is a terminal run plus an HTML/JSON report, not a page you'd deploy. There's also nothing safe to host publicly: Example 2's chatbot is *deliberately vulnerable* by design, and Examples 1 and 3 scan models that need to run locally (local weights or a local Ollama server), not something a static host can serve.
+
+The primary evidence here is the **scan output itself** — the terminal runs and the garak HTML/JSON reports checked into each example's `reports/` and `screenshots/` folders — the same artifacts you'd hand to a team after a real security assessment.
 
 ---
 

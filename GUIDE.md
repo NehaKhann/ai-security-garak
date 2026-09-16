@@ -14,6 +14,7 @@
 8. [Hands-on: Spring Boot REST chatbot](./02-springboot-rest/README.md)
 9. [Hands-on: Ollama local model](./03-ollama-local/README.md)
 10. [Adapting garak to your own app](#10-adapting-garak-to-your-own-app)
+11. [Troubleshooting](#11-troubleshooting)
 
 ---
 
@@ -125,6 +126,28 @@ Each run writes files to `~/.local/share/garak/garak_runs/`, named by run UUID:
 ## 10. Adapting garak to your own app
 
 If your target isn't OpenAI/Hugging Face/Ollama, garak's [`rest` generator](https://github.com/NVIDIA/garak/tree/main/garak/generators) points at **any HTTP endpoint** via a short YAML config. [`02-springboot-rest/`](./02-springboot-rest/README.md) shows this end-to-end.
+
+## 11. Troubleshooting
+
+**`UnicodeEncodeError` / `'charmap' codec can't encode character ...` on Windows.**
+
+garak prints emoji (📜 🕵️ ✔️) as status markers. Older Windows consoles (PowerShell 5.1, `cmd.exe`, Git Bash) default to a legacy code page like `cp1252`, which can't render them, and the whole run crashes before it prints anything useful. This is a console-encoding issue, not a bug in your scan — fix it once per session:
+
+```powershell
+$env:PYTHONIOENCODING = "utf-8"    # PowerShell
+```
+
+```bash
+export PYTHONIOENCODING=utf-8      # Bash / Git Bash
+```
+
+Then re-run your `garak` command. (Windows Terminal with UTF-8 already set, or `chcp 65001`, works too.)
+
+**Port 8080 already in use (Example 2).** Something else on your machine is already listening on 8080. Either stop that process, or run the chatbot on another port and point `rest-config.json`'s `uri` at it:
+
+```bash
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8090"
+```
 
 ---
 

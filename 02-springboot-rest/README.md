@@ -30,6 +30,8 @@ java -version
 mvn -version
 ```
 
+> **Troubleshooting:** if the chatbot fails to start with "Port 8080 was already in use", or garak crashes with a `charmap`/`UnicodeEncodeError` on Windows, see [GUIDE.md → Troubleshooting](../GUIDE.md#11-troubleshooting).
+
 ---
 
 # Step 1 — Start the chatbot
